@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!-- Primary Meta Tags -->
+<title id="pageTitle">Loading...</title>
+<meta name="title" id="metaTitle" content="">
+<meta name="description" id="metaDescription" content="">
+<meta name="keywords" id="metaKeywords" content="">
+<meta name="author" content="Penny Pincher">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" id="ogUrl" content="">
+<meta property="og:title" id="ogTitle" content="">
+<meta property="og:description" id="ogDescription" content="">
+<meta property="og:image" id="ogImage" content="">
+<meta property="og:site_name" content="Penny Pincher">
+<meta property="article:published_time" id="ogPublished" content="">
+<meta property="article:modified_time" id="ogModified" content="">
+<meta property="article:author" content="Penny Pincher">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" id="twitterUrl" content="">
+<meta property="twitter:title" id="twitterTitle" content="">
+<meta property="twitter:description" id="twitterDescription" content="">
+<meta property="twitter:image" id="twitterImage" content="">
+
+<!-- Canonical URL -->
+<link rel="canonical" id="canonicalUrl" href="">
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://strapi-advertorials-xrppc.ondigitalocean.app">
+<link rel="preconnect" href="https://api.pennypincher.com">
+<link rel="preconnect" href="https://media.quickmedigap.com">
+<link rel="dns-prefetch" href="https://honestquote.com">
+
+<style>
+  :root{
+    --bg:#0b0f14; --ink:#e5e7eb; --muted:#9aa4b2; --line:#1b2330;
+    --brand:#f59e0b; --brand-2:#16a34a; --link:#93c5fd; --chip:#0f1720;
+    --card:#0e141b; --accent:#ffe08a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  a{color:var(--link)}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:1120px;margin:auto;padding:20px}
+  .content-wrap{max-width:784px;margin:auto;padding:20px}
+  header,footer{background:#0a0f15;border-bottom:1px solid var(--line)}
+  header .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  header .tag{color:var(--muted);font-size:14px}
+  .hero{margin-top:12px}
+  .title{font-weight:900;letter-spacing:-.01em;line-height:1.15;margin:20px 0 8px}
+  .title.xl{font-size:clamp(28px,5vw,48px)}
+  .date{color:var(--muted);font-style:italic;font-size:14px}
+  .prose{font-size:18px}
+  .prose p{margin:14px 0}
+  .prose ol{padding-left:1.25rem}
+  .prose li{margin:.4rem 0}
+  .prose h2{margin-top:28px;margin-bottom:14px;font-size:26px;font-weight:800}
+  .prose h3{margin-top:24px;margin-bottom:12px;font-size:22px;font-weight:700}
+  .prose strong{font-weight:700}
+  .btn{display:inline-block;width:100%;text-align:center;font-weight:800;text-decoration:none;
+       background:var(--brand);color:#000;padding:14px 18px;border-radius:10px;margin:14px 0;transition:.15s}
+  .btn:hover{background:var(--brand-2);color:#fff}
+  .zipbox{margin-top:24px}
+  .zipbox h3{margin:0 0 10px;font-size:22px}
+  .zips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  @media(min-width:900px){.zips{grid-template-columns:repeat(8,minmax(0,1fr))}}
+  .zip{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:8px;
+       background:var(--chip);border:1px solid var(--line);font-weight:700;text-decoration:none}
+  .notice{margin-top:24px;border:1px dashed var(--accent);background:#151b24;padding:16px;border-radius:12px;text-align:center}
+  .ctaCard{margin-top:26px;background:var(--card);border:1px solid var(--line);padding:18px;border-radius:14px}
+  .foot{color:#98a2b3;font-size:13px;margin-top:18px}
+  .center{text-align:center}
+  .logo{height:28px}
+  .loading{text-align:center;padding:40px;color:var(--muted)}
+  .error{background:#7f1d1d;color:#fca5a5;padding:20px;border-radius:12px;margin:20px 0}
+  .breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:14px;color:var(--muted)}
+  .breadcrumb a{color:var(--muted);text-decoration:none}
+  .breadcrumb a:hover{color:var(--link)}
+  .author-info{display:flex;align-items:center;gap:12px;margin-top:12px;padding:16px 0;border-top:1px solid var(--line)}
+  .author-avatar{width:48px;height:48px;border-radius:50%;background:var(--chip)}
+  .author-details{flex:1}
+  .author-name{font-weight:600;color:var(--ink)}
+  .author-bio{font-size:14px;color:var(--muted);margin-top:2px}
+  .reading-time{color:var(--muted);font-size:14px;margin-left:auto}
+  @media print{
+    header,footer,.zipbox,.ctaCard,.btn{display:none!important}
+    body{background:white;color:black}
+    .content-wrap{max-width:100%}
+  }
+</style>
+
+<!-- Structured Data / JSON-LD -->
+<script type="application/ld+json" id="structuredData">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "",
+  "description": "",
+  "image": "",
+  "author": {
+    "@type": "Organization",
+    "name": "Penny Pincher",
+    "url": "https://pennypincher.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Penny Pincher",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://pennypincher.com/logo.svg"
+    }
+  },
+  "datePublished": "",
+  "dateModified": "",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  }
+}
+</script>
+
+<!-- Breadcrumb Structured Data -->
+<script type="application/ld+json" id="breadcrumbData">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://pennypincher.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Articles",
+      "item": "https://pennypincher.com/articles"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "",
+      "item": ""
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+  <nav class="wrap bar" role="navigation" aria-label="Main navigation">
+    <a href="https://pennypincher.com" aria-label="Penny Pincher Home">
+      <img class="logo" src="logo.svg" alt="Penny Pincher Logo" width="112" height="28">
+    </a>
+  </nav>
+</header>
+
+<main class="content-wrap" role="main">
+  <div id="loadingState" class="loading" aria-live="polite">Loading article...</div>
+  <div id="errorState" class="error" style="display:none" role="alert"></div>
+  
+  <article id="articleContent" style="display:none" itemscope itemtype="https://schema.org/Article">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://pennypincher.com">Home</a>
+      <span>›</span>
+      <a href="/feed">Articles</a>
+      <span>›</span>
+      <span id="breadcrumbCurrent"></span>
+    </nav>
+
+    <header>
+      <h1 class="title xl" id="title" itemprop="headline"></h1>
+      
+      <div class="author-info">
+        <img class="author-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230f1720'/%3E%3Ctext x='50' y='55' text-anchor='middle' font-size='40' fill='%239aa4b2'%3EPP%3C/text%3E%3C/svg%3E" alt="Author" width="48" height="48">
+        <div class="author-details">
+          <div class="author-name" itemprop="author">Penny Pincher Editorial Team</div>
+          <div class="author-bio">Expert money-saving tips and financial advice</div>
+        </div>
+        <div class="reading-time" id="readingTime"></div>
+      </div>
+      
+      <time class="date" id="datePublished" itemprop="datePublished" datetime="">
+        Last Updated: <span id="date"></span>
+      </time>
+    </header>
+
+    <figure class="hero" id="heroContainer" style="display:none">
+      <img id="featuredImage" alt="" itemprop="image" loading="eager" fetchpriority="high">
+    </figure>
+
+    <div class="prose" id="content" itemprop="articleBody"></div>
+
+    <aside class="zipbox" id="zipSection" style="display:none" aria-label="ZIP Code Discounts">
+      <h2>ZIP Codes Eligible For Discounts:</h2>
+      <div class="zips" id="zips" role="list"></div>
+      <div class="notice">
+        Don't see your ZIP? <a class="ctaLink" href="#" target="_blank" rel="noopener nofollow">Click here to check yours</a>.
+      </div>
+    </aside>
+  </article>
+</main>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <hr>
+    <div class="center">
+      <a href="https://pennypincher.com" aria-label="Penny Pincher Home">
+        <img class="logo" src="logo.svg" alt="Penny Pincher Logo" width="112" height="28" loading="lazy">
+      </a>
+    </div>
+    <p class="foot center">
+      © 2025 PennyPincher.com. All Rights Reserved. &nbsp; 
+      <a href="/privacy-policy" rel="nofollow">Privacy</a> · 
+      <a href="/terms-of-use" rel="nofollow">Terms</a> · 
+      <a href="/contact" rel="nofollow">Contact</a>
+    </p>
+  </div>
+</footer>
+
+<script type="module">
+// Enhanced Article Loader with SEO optimizations
+class ArticleLoader {
+  constructor() {
+    this.apiBase = 'https://strapi-advertorials-xrppc.ondigitalocean.app/api';
+    this.apiToken = '7b1cdd7dec14d838179aa383e0686ccf4c171ddf1c0c256127108901d3885db31ca6548a478064cd9c6272beecf86bc2fb297c5185ceedd92b563131ddd3def956321421de8b6ef607b0c2b19f86edc6693ab6e02486ebd49d5c9366f1fead150cbc64938aa7f3ed630d311837c2c3b03ecfc79ad02b085eea50b251ba9f603c';
+    this.articleData = null;
+    this.geoData = {};
+  }
+
+  async init() {
+    try {
+      const slug = this.getSlugFromPath();
+      
+      if (!slug) {
+        this.showError('No article specified');
+        return;
+      }
+
+      await this.loadGeoData();
+      await this.loadArticle(slug);
+      this.renderArticle();
+      this.updateSEOTags();
+      this.loadZipCodes();
+      
+    } catch (error) {
+      console.error('Error loading article:', error);
+      this.showError('Failed to load article. Please try again later.');
+    }
+  }
+
+  getSlugFromPath() {
+    const path = window.location.pathname;
+    let slug = path.replace(/^\//, '').replace(/^articles\//, '');
+    slug = slug.split('/')[0].split('?')[0];
+    return slug || null;
+  }
+
+  async loadGeoData() {
+    try {
+      const url = new URL(location.href);
+      const stateFromUrl = url.searchParams.get('state');
+      const cityFromUrl = url.searchParams.get('city');
+      
+      if (stateFromUrl) this.geoData.state = stateFromUrl;
+      if (cityFromUrl) this.geoData.city = cityFromUrl;
+      
+      if (!this.geoData.state || !this.geoData.city) {
+        const cachedState = localStorage.getItem('geoState');
+        const cachedCity = localStorage.getItem('geoCity');
+        const cachedZip = localStorage.getItem('geoZipCode');
+        
+        if (cachedState) this.geoData.state = cachedState;
+        if (cachedCity) this.geoData.city = cachedCity;
+        if (cachedZip) this.geoData.zipCode = cachedZip;
+        
+        if (!this.geoData.state || !this.geoData.city) {
+          try {
+            const response = await fetch('https://api.pennypincher.com/geo');
+            if (response.ok) {
+              const data = await response.json();
+              if (data.state) {
+                this.geoData.state = data.state;
+                localStorage.setItem('geoState', data.state);
+              }
+              if (data.city) {
+                this.geoData.city = data.city;
+                localStorage.setItem('geoCity', data.city);
+              }
+              if (data.postal) {
+                this.geoData.zipCode = data.postal;
+                localStorage.setItem('geoZipCode', data.postal);
+              }
+            }
+          } catch (e) {
+            console.warn('Could not fetch geo data:', e);
+          }
+        }
+      }
+      
+      if (!this.geoData.state) this.geoData.state = 'Your State';
+      if (!this.geoData.city) this.geoData.city = 'Your City';
+    } catch (error) {
+      console.error('Error loading geo data:', error);
+      this.geoData = { state: 'Your State', city: 'Your City' };
+    }
+  }
+
+  async loadArticle(slug) {
+    const url = `${this.apiBase}/pp-articles/?filters[slug][$eq]=${slug}&populate=*&pagination[pageSize]=1`;
+    
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${this.apiToken}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch article: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.data || data.data.length === 0) {
+      throw new Error('Article not found');
+    }
+
+    this.articleData = data.data[0].attributes;
+  }
+
+  updateSEOTags() {
+    if (!this.articleData) return;
+
+    const title = this.replaceTokens(this.articleData.title || this.articleData.title_without_tokens);
+    const description = this.generateMetaDescription();
+    const keywords = this.generateKeywords();
+    const canonicalUrl = `https://pennypincher.com/${this.articleData.slug}`;
+    const imageUrl = this.getImageUrl();
+
+    // Update title tags
+    document.getElementById('pageTitle').textContent = `${title} | Penny Pincher`;
+    document.getElementById('metaTitle').content = title;
+    document.getElementById('metaDescription').content = description;
+    document.getElementById('metaKeywords').content = keywords;
+
+    // Update Open Graph tags
+    document.getElementById('ogUrl').content = canonicalUrl;
+    document.getElementById('ogTitle').content = title;
+    document.getElementById('ogDescription').content = description;
+    document.getElementById('ogImage').content = imageUrl;
+    document.getElementById('ogPublished').content = new Date(this.articleData.createdAt).toISOString();
+    document.getElementById('ogModified').content = new Date(this.articleData.updatedAt).toISOString();
+
+    // Update Twitter tags
+    document.getElementById('twitterUrl').content = canonicalUrl;
+    document.getElementById('twitterTitle').content = title;
+    document.getElementById('twitterDescription').content = description;
+    document.getElementById('twitterImage').content = imageUrl;
+
+    // Update canonical URL
+    document.getElementById('canonicalUrl').href = canonicalUrl;
+
+    // Update structured data
+    this.updateStructuredData(title, description, imageUrl, canonicalUrl);
+  }
+
+  generateMetaDescription() {
+    let description = this.articleData.main_content || '';
+    description = description.replace(/\*\*(.*?)\*\*/g, '$1');
+    description = description.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+    description = description.replace(/^#+\s+/gm, '');
+    description = description.replace(/^\d+\.\s+/gm, '');
+    description = description.replace(/\n+/g, ' ');
+    description = this.replaceTokens(description);
+    description = description.substring(0, 155).trim();
+    if (description.length === 155) description += '...';
+    return description;
+  }
+
+  generateKeywords() {
+    const vertical = this.articleData.vertical || 'finance';
+    const state = this.geoData.state;
+    const baseKeywords = [
+      'money saving',
+      'financial tips',
+      vertical,
+      state,
+      'discounts',
+      'save money',
+      this.articleData.offer_name
+    ].filter(Boolean);
+    
+    return baseKeywords.join(', ');
+  }
+
+  getImageUrl() {
+    if (this.articleData.featured_image?.data?.attributes) {
+      const imageData = this.articleData.featured_image.data.attributes;
+      return imageData.url || imageData.formats?.large?.url || imageData.formats?.medium?.url || '';
+    }
+    return 'https://pennypincher.com/default-share.jpg';
+  }
+
+  updateStructuredData(title, description, imageUrl, canonicalUrl) {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": title,
+      "description": description,
+      "image": imageUrl,
+      "author": {
+        "@type": "Organization",
+        "name": "Penny Pincher",
+        "url": "https://pennypincher.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Penny Pincher",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://pennypincher.com/logo.svg"
+        }
+      },
+      "datePublished": new Date(this.articleData.createdAt).toISOString(),
+      "dateModified": new Date(this.articleData.updatedAt).toISOString(),
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+      }
+    };
+
+    document.getElementById('structuredData').textContent = JSON.stringify(structuredData, null, 2);
+
+    // Update breadcrumb data
+    const breadcrumbData = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://pennypincher.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://pennypincher.com/articles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": title,
+          "item": canonicalUrl
+        }
+      ]
+    };
+
+    document.getElementById('breadcrumbData').textContent = JSON.stringify(breadcrumbData, null, 2);
+  }
+
+  calculateReadingTime(content) {
+    const wordsPerMinute = 200;
+    const wordCount = content.trim().split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    return `${minutes} min read`;
+  }
+
+  renderArticle() {
+    if (!this.articleData) return;
+
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('articleContent').style.display = 'block';
+
+    const title = this.replaceTokens(this.articleData.title || this.articleData.title_without_tokens);
+    document.getElementById('title').textContent = title;
+    document.getElementById('breadcrumbCurrent').textContent = title;
+
+    // Set reading time
+    const readingTime = this.calculateReadingTime(this.articleData.main_content);
+    document.getElementById('readingTime').textContent = readingTime;
+
+    // Set date with proper datetime attribute
+    const date = new Date();
+    date.setDate(date.getDate() - 3);
+    document.getElementById('date').textContent = date.toLocaleDateString('en-US', {
+      month: 'long',
+      day: '2-digit',
+      year: 'numeric'
+    });
+    document.getElementById('datePublished').setAttribute('datetime', date.toISOString());
+
+    // Set featured image
+    if (this.articleData.featured_image?.data?.attributes) {
+      const imageData = this.articleData.featured_image.data.attributes;
+      const imageUrl = imageData.url || imageData.formats?.large?.url || imageData.formats?.medium?.url;
+      
+      if (imageUrl) {
+        const heroContainer = document.getElementById('heroContainer');
+        const featuredImage = document.getElementById('featuredImage');
+        featuredImage.src = imageUrl;
+        featuredImage.alt = imageData.alternativeText || `${title} - Featured Image`;
+        featuredImage.setAttribute('width', imageData.width || '1200');
+        featuredImage.setAttribute('height', imageData.height || '630');
+        heroContainer.style.display = 'block';
+      }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const fimg = urlParams.get('fimg');
+    if (fimg) {
+      document.getElementById('featuredImage').src = fimg;
+      document.getElementById('heroContainer').style.display = 'block';
+    }
+
+    const content = this.processContent(this.articleData.main_content);
+    document.getElementById('content').innerHTML = content;
+
+    this.updateCTALinks();
+
+    if (this.articleData.cta_component === 'ZipCodes') {
+      document.getElementById('zipSection').style.display = 'block';
+    }
+
+    if (this.articleData.display_popunder && this.articleData.popunder_url) {
+      this.setupPopunder(this.articleData.popunder_url);
+    }
+  }
+
+  processContent(markdown) {
+    let html = markdown;
+    
+    html = this.replaceTokens(html);
+    
+    // Headers with proper hierarchy
+    html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+    html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^# (.*?)$/gm, '<h2>$1</h2>'); // Convert H1 to H2 since we have main H1
+    
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    html = html.replace(/\[([^\]]+)\]\(link\)/g, (match, text) => {
+      const url = this.articleData.cta_url || '#';
+      const offerName = this.articleData.offer_name || text;
+      return `<a class="ctaLink" href="${url}" target="_blank" rel="noopener nofollow">${text.replace('{offer_name}', offerName)}</a>`;
+    });
+    
+    html = html.replace(/^\d+\.\s+(.*?)$/gm, (match, content) => {
+      return `<li>${content}</li>`;
+    });
+    
+    html = html.replace(/(<li>.*?<\/li>\s*)+/gs, (match) => {
+      return `<ol>${match}</ol>`;
+    });
+    
+    html = html.split('\n\n').map(para => {
+      para = para.trim();
+      if (para && !para.startsWith('<') && !para.match(/^[\d]+\./)) {
+        return `<p>${para}</p>`;
+      }
+      return para;
+    }).join('\n\n');
+    
+    html = html.replace(/\n{3,}/g, '\n\n');
+    
+    return html;
+  }
+
+  replaceTokens(text) {
+    if (!text) return text;
+    
+    const state = this.geoData.state || 'Your State';
+    const city = this.geoData.city || 'Your City';
+    const offerName = this.articleData.offer_name || 'this service';
+    
+    return text
+      .replace(/\{state\}/g, state)
+      .replace(/\{city\}/g, city)
+      .replace(/\{offer_name\}/g, offerName);
+  }
+
+  updateCTALinks() {
+    const ctaUrl = this.articleData.cta_url || '#';
+    const ctaLinks = document.querySelectorAll('.ctaLink, .btn');
+    
+    ctaLinks.forEach(link => {
+      if (link.href === '#' || link.href.includes('link')) {
+        link.href = ctaUrl;
+        link.setAttribute('rel', 'noopener nofollow');
+      }
+    });
+  }
+
+  async loadZipCodes() {
+    const container = document.getElementById('zips');
+    if (!container) return;
+    
+    try {
+      const response = await fetch('https://api.pennypincher.com/zipcode-radius');
+      if (!response.ok) throw new Error('Failed to fetch ZIP codes');
+      
+      const data = await response.json();
+      const zipCodes = data.zip_codes || [];
+      
+      zipCodes
+        .sort((a, b) => a.zip_code.localeCompare(b.zip_code))
+        .forEach(zip => {
+          const link = document.createElement('a');
+          link.className = 'zip';
+          link.href = this.articleData.cta_url || '#';
+          link.target = '_blank';
+          link.rel = 'noopener nofollow';
+          link.textContent = zip.zip_code;
+          link.setAttribute('role', 'listitem');
+          container.appendChild(link);
+        });
+    } catch (error) {
+      console.error('Error loading ZIP codes:', error);
+      container.innerHTML = '<span style="color:#fca5a5">ZIP list unavailable. Try again later.</span>';
+    }
+  }
+
+  setupPopunder(url) {
+    let popunderShown = false;
+    
+    const showPopunder = () => {
+      if (popunderShown) return;
+      popunderShown = true;
+      
+      window.open(url, '_blank');
+    };
+    
+    document.addEventListener('click', showPopunder, { once: true });
+    document.addEventListener('scroll', () => {
+      if (window.scrollY > 100) showPopunder();
+    }, { once: true });
+  }
+
+  showError(message) {
+    document.getElementById('loadingState').style.display = 'none';
+    const errorElement = document.getElementById('errorState');
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+  }
+}
+
+// Initialize the article loader
+const loader = new ArticleLoader();
+loader.init();
+</script>
+</body>
+</html>

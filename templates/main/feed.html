@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Latest Articles - Penny Pincher</title>
+<style>
+  :root{
+    --bg:#0b0f14; --ink:#e5e7eb; --muted:#9aa4b2; --line:#1b2330;
+    --brand:#f59e0b; --brand-2:#16a34a; --link:#93c5fd; --chip:#0f1720;
+    --card:#0e141b; --accent:#ffe08a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  a{color:var(--link);text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%;height:auto;display:block}
+  .wrap{max-width:1120px;margin:auto;padding:20px}
+  header,footer{background:#0a0f15;border-bottom:1px solid var(--line)}
+  header .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .title{font-weight:900;letter-spacing:-.01em;line-height:1.15;margin:20px 0 8px}
+  .title.xl{font-size:clamp(28px,5vw,48px)}
+  .subtitle{color:var(--muted);font-size:18px;margin-bottom:32px}
+  .feed-grid{display:grid;gap:24px;margin-top:32px}
+  @media(min-width:768px){
+    .feed-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(min-width:1024px){
+    .feed-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  .article-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+  .article-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+  .article-image{width:100%;height:200px;object-fit:cover;background:var(--chip)}
+  .article-content{padding:20px}
+  .article-title{font-size:20px;font-weight:800;margin:0 0 12px;line-height:1.3}
+  .article-excerpt{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:16px}
+  .article-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+  .article-tag{background:var(--chip);padding:4px 8px;border-radius:4px;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+  .read-more{color:var(--brand);font-weight:600;display:inline-flex;align-items:center;gap:4px}
+  .read-more:hover{color:var(--brand-2)}
+  .loading{text-align:center;padding:40px;color:var(--muted)}
+  .error{background:#7f1d1d;color:#fca5a5;padding:20px;border-radius:12px;margin:20px 0}
+  .pagination{display:flex;justify-content:center;gap:8px;margin-top:40px}
+  .page-btn{padding:8px 16px;background:var(--chip);border:1px solid var(--line);border-radius:6px;color:var(--ink);cursor:pointer;transition:0.2s}
+  .page-btn:hover{background:var(--brand);color:#000}
+  .page-btn.active{background:var(--brand);color:#000}
+  .page-btn:disabled{opacity:0.5;cursor:not-allowed}
+  .filters{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+  .filter-btn{padding:8px 16px;background:var(--chip);border:1px solid var(--line);border-radius:20px;cursor:pointer;transition:0.2s}
+  .filter-btn:hover{background:var(--brand);color:#000}
+  .filter-btn.active{background:var(--brand);color:#000}
+  .logo{height:28px}
+  .foot{color:#98a2b3;font-size:13px;margin-top:18px}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a href="https://pennypincher.com"><img class="logo" src="/logo.svg" alt="Penny Pincher"></a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1 class="title xl">Latest Money-Saving Articles</h1>
+  <p class="subtitle">Expert tips and insights to help you save more and spend less</p>
+  
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-vertical="all">All</button>
+    <button class="filter-btn" data-vertical="finance">Finance</button>
+    <button class="filter-btn" data-vertical="insurance">Insurance</button>
+    <button class="filter-btn" data-vertical="auto">Auto</button>
+    <button class="filter-btn" data-vertical="home">Home</button>
+  </div>
+
+  <div id="loadingState" class="loading">Loading articles...</div>
+  <div id="errorState" class="error" style="display:none"></div>
+  
+  <div class="feed-grid" id="feedGrid" style="display:none"></div>
+  
+  <div class="pagination" id="pagination" style="display:none">
+    <button class="page-btn" id="prevBtn" onclick="feedLoader.previousPage()">← Previous</button>
+    <span id="pageInfo" style="padding:8px 16px;color:var(--muted)"></span>
+    <button class="page-btn" id="nextBtn" onclick="feedLoader.nextPage()">Next →</button>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <hr><br>
+    <div class="center"><a href="https://pennypincher.com"><img class="logo" src="/logo.svg" alt="Penny Pincher"></a></div>
+    <p class="foot center">© 2025 PennyPincher.com. All Rights Reserved. &nbsp; <a href="/privacy-policy">Privacy</a> · <a href="/terms-of-use">Terms</a> · <a href="/contact">Contact</a></p>
+  </div>
+</footer>
+
+<script type="module">
+import { FeedLoader } from './feed-loader.js';
+
+// Initialize the feed loader
+window.feedLoader = new FeedLoader();
+feedLoader.init();
+</script>
+</body>
+</html>

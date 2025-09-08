@@ -1,0 +1,17 @@
+{
+  "name": "ppui-article-system",
+  "version": "1.0.0",
+  "description": "Article template system with Strapi integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "articles",
+    "strapi",
+    "template"
+  ],
+  "author": "",
+  "license": "ISC"
+}
