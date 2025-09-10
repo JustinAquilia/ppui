@@ -56,17 +56,58 @@
   header,footer{background:#0a0f15;border-bottom:1px solid var(--line)}
   header .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
   header .tag{color:var(--muted);font-size:14px}
-  .hero{margin-top:12px}
+  .hero{margin-top:24px;margin-bottom:32px;border-radius:12px;overflow:hidden}
   .title{font-weight:900;letter-spacing:-.01em;line-height:1.15;margin:20px 0 8px}
   .title.xl{font-size:clamp(28px,5vw,48px)}
-  .date{color:var(--muted);font-style:italic;font-size:14px}
-  .prose{font-size:18px}
-  .prose p{margin:14px 0}
-  .prose ol{padding-left:1.25rem}
-  .prose li{margin:.4rem 0}
-  .prose h2{margin-top:28px;margin-bottom:14px;font-size:26px;font-weight:800}
-  .prose h3{margin-top:24px;margin-bottom:12px;font-size:22px;font-weight:700}
-  .prose strong{font-weight:700}
+  .date{color:var(--muted);font-style:italic;font-size:14px;margin-bottom:24px}
+  .prose{font-size:18px;line-height:1.75}
+  .prose p{margin:20px 0}
+  .prose p:first-child{margin-top:0}
+  .prose ol, .prose ul{padding-left:1.5rem;margin:20px 0}
+  .prose li{margin:8px 0;line-height:1.65}
+  .prose h2{margin-top:36px;margin-bottom:16px;font-size:28px;font-weight:800;line-height:1.3}
+  .prose h3{margin-top:28px;margin-bottom:12px;font-size:22px;font-weight:700}
+  .prose strong{font-weight:700;color:var(--ink)}
+  
+  /* Enhanced table styles with mobile responsiveness */
+  .table-wrapper{overflow-x:auto;margin:24px 0;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+  .prose table{width:100%;min-width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);font-size:15px}
+  .prose th{background:var(--chip);padding:14px 16px;text-align:left;font-weight:600;border-bottom:2px solid var(--line);white-space:nowrap;color:var(--ink)}
+  .prose td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--muted);vertical-align:top}
+  .prose tbody tr:last-child td{border-bottom:none}
+  .prose tbody tr:hover{background:rgba(255,255,255,0.03)}
+  .prose tbody tr:nth-child(even){background:rgba(255,255,255,0.01)}
+  
+  /* Better list styling */
+  .prose ul li::marker{color:var(--brand)}
+  .prose ol li::marker{color:var(--brand);font-weight:600}
+  
+  /* Blockquote styling */
+  .prose blockquote{margin:24px 0;padding:16px 20px;background:var(--chip);border-left:4px solid var(--brand);border-radius:4px;font-style:italic}
+  
+  /* Code styling */
+  .prose code{background:var(--chip);padding:2px 6px;border-radius:4px;font-size:0.9em;font-family:monospace}
+  .prose pre{background:var(--chip);padding:16px;border-radius:8px;overflow-x:auto;margin:20px 0}
+  .prose pre code{background:transparent;padding:0}
+  
+  /* Mobile-first responsive table */
+  @media(max-width:768px){
+    .table-wrapper{margin:20px -20px;border-radius:0;padding:0 20px}
+    .prose table{font-size:14px;display:block}
+    .prose thead{display:none}
+    .prose tbody{display:block}
+    .prose tr{display:block;margin-bottom:16px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px}
+    .prose td{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border:none;text-align:right}
+    .prose td:before{content:attr(data-label);font-weight:600;text-align:left;padding-right:12px;color:var(--ink);flex-shrink:0;max-width:50%}
+    .prose td:last-child{border-bottom:none}
+    .prose tbody tr:hover{background:var(--card);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+  }
+  
+  /* Scrollable table indicator */
+  .table-wrapper::-webkit-scrollbar{height:8px}
+  .table-wrapper::-webkit-scrollbar-track{background:var(--chip);border-radius:4px}
+  .table-wrapper::-webkit-scrollbar-thumb{background:var(--muted);border-radius:4px}
+  .table-wrapper::-webkit-scrollbar-thumb:hover{background:var(--brand)}
   .btn{display:inline-block;width:100%;text-align:center;font-weight:800;text-decoration:none;
        background:var(--brand);color:#000;padding:14px 18px;border-radius:10px;margin:14px 0;transition:.15s}
   .btn:hover{background:var(--brand-2);color:#fff}
@@ -86,7 +127,7 @@
   .breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:14px;color:var(--muted)}
   .breadcrumb a{color:var(--muted);text-decoration:none}
   .breadcrumb a:hover{color:var(--link)}
-  .author-info{display:flex;align-items:center;gap:12px;margin-top:12px;padding:16px 0;border-top:1px solid var(--line)}
+  .author-info{display:flex;align-items:center;gap:12px;margin-top:16px;margin-bottom:20px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .author-avatar{width:48px;height:48px;border-radius:50%;background:var(--chip)}
   .author-details{flex:1}
   .author-name{font-weight:600;color:var(--ink)}
@@ -545,30 +586,45 @@ class ArticleLoader {
     
     html = this.replaceTokens(html);
     
+    // Process markdown tables FIRST (before other conversions)
+    html = this.processMarkdownTables(html);
+    
     // Headers with proper hierarchy
     html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
     html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
     html = html.replace(/^# (.*?)$/gm, '<h2>$1</h2>'); // Convert H1 to H2 since we have main H1
     
+    // Bold and italic
+    html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
     
+    // Links with custom text
     html = html.replace(/\[([^\]]+)\]\(link\)/g, (match, text) => {
       const url = this.articleData.cta_url || '#';
       const offerName = this.articleData.offer_name || text;
       return `<a class="ctaLink" href="${url}" target="_blank" rel="noopener nofollow">${text.replace('{offer_name}', offerName)}</a>`;
     });
     
-    html = html.replace(/^\d+\.\s+(.*?)$/gm, (match, content) => {
-      return `<li>${content}</li>`;
-    });
+    // Regular links
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     
+    // Bullet lists
+    html = html.replace(/^[\*\-]\s+(.*?)$/gm, '<li>$1</li>');
+    
+    // Numbered lists
+    html = html.replace(/^\d+\)\s+(.*?)$/gm, '<li>$1</li>');
+    html = html.replace(/^\d+\.\s+(.*?)$/gm, '<li>$1</li>');
+    
+    // Wrap consecutive list items
     html = html.replace(/(<li>.*?<\/li>\s*)+/gs, (match) => {
       return `<ol>${match}</ol>`;
     });
     
+    // Paragraphs (but not for content already in HTML tags)
     html = html.split('\n\n').map(para => {
       para = para.trim();
-      if (para && !para.startsWith('<') && !para.match(/^[\d]+\./)) {
+      if (para && !para.startsWith('<') && !para.match(/^[\d]+\./) && !para.match(/^[\*\-]\s/)) {
         return `<p>${para}</p>`;
       }
       return para;
@@ -577,6 +633,50 @@ class ArticleLoader {
     html = html.replace(/\n{3,}/g, '\n\n');
     
     return html;
+  }
+
+  processMarkdownTables(text) {
+    // Find markdown tables and convert them to HTML
+    const tableRegex = /\|(.+)\|\n\|[\s\-\|]+\|\n((?:\|.+\|\n?)+)/gm;
+    
+    return text.replace(tableRegex, (match, headerRow, bodyRows) => {
+      // Process header
+      const headers = headerRow.split('|').filter(h => h.trim()).map(h => h.trim());
+      
+      // Process body rows
+      const rows = bodyRows.trim().split('\n').map(row =>
+        row.split('|').filter(cell => cell !== undefined && cell !== '').map(cell => cell.trim())
+      );
+      
+      // Build HTML table with wrapper for mobile responsiveness
+      let tableHtml = '<div class="table-wrapper"><table>';
+      
+      // Add header
+      tableHtml += '<thead><tr>';
+      headers.forEach(header => {
+        tableHtml += `<th>${header}</th>`;
+      });
+      tableHtml += '</tr></thead>';
+      
+      // Add body
+      tableHtml += '<tbody>';
+      rows.forEach(row => {
+        if (row.length > 0) {
+          tableHtml += '<tr>';
+          row.forEach((cell, index) => {
+            // Add data-label for mobile responsiveness
+            const label = headers[index] || '';
+            tableHtml += `<td data-label="${label}">${cell || ''}</td>`;
+          });
+          tableHtml += '</tr>';
+        }
+      });
+      tableHtml += '</tbody>';
+      
+      tableHtml += '</table></div>';
+      
+      return tableHtml;
+    });
   }
 
   replaceTokens(text) {
