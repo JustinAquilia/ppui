@@ -22,21 +22,32 @@
   .title{font-weight:900;letter-spacing:-.01em;line-height:1.15;margin:20px 0 8px}
   .title.xl{font-size:clamp(28px,5vw,48px)}
   .subtitle{color:var(--muted);font-size:18px;margin-bottom:32px}
-  .feed-grid{display:grid;gap:24px;margin-top:32px}
+  .feed-grid{display:grid;gap:28px;margin-top:32px}
   @media(min-width:768px){
-    .feed-grid{grid-template-columns:repeat(2,1fr)}
+    .feed-grid{grid-template-columns:repeat(2,1fr);gap:24px}
   }
   @media(min-width:1024px){
-    .feed-grid{grid-template-columns:repeat(3,1fr)}
+    .feed-grid{grid-template-columns:repeat(3,1fr);gap:28px}
   }
-  .article-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
-  .article-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
-  .article-image{width:100%;height:200px;object-fit:cover;background:var(--chip)}
-  .article-content{padding:20px}
-  .article-title{font-size:20px;font-weight:800;margin:0 0 12px;line-height:1.3}
-  .article-excerpt{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:16px}
-  .article-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
-  .article-tag{background:var(--chip);padding:4px 8px;border-radius:4px;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+  .article-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    transition:all 0.3s ease;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+  .article-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 32px rgba(0,0,0,0.25);
+    border-color:var(--brand);
+  }
+  .article-image{width:100%;height:200px;object-fit:cover;background:var(--chip);border-bottom:1px solid var(--line)}
+  .article-content{padding:24px}
+  .article-title{font-size:20px;font-weight:800;margin:0 0 14px;line-height:1.3}
+  .article-excerpt{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:20px}
+  .article-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);padding-top:16px;border-top:1px solid rgba(255,255,255,0.05)}
+  .article-tag{background:var(--chip);padding:5px 10px;border-radius:6px;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
   .read-more{color:var(--brand);font-weight:600;display:inline-flex;align-items:center;gap:4px}
   .read-more:hover{color:var(--brand-2)}
   .loading{text-align:center;padding:40px;color:var(--muted)}
